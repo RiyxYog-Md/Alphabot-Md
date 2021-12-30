@@ -319,9 +319,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             case 'rules':
             reply(lang.rules(prefix))
             break
-            case 'sc': case 'source':
-            reply(lang.source())
-            break
+            
             case 'donasi': case 'donate':
             reply(lang.tos(ownernomer))
 			break
@@ -516,20 +514,16 @@ break
             }
             break
             case 'tagall': case 'infoall':
-                if (!m.isGroup) return reply(lang.groupOnly())
-                if (!isGroupAdmins) return reply(lang.adminOnly())
-                if (!isBotAdmins) return reply(lang.botNotAdmin())
+                
                 let tekss = `══✪〘 *👥 Mention All* 〙✪══\n\n➲ *Message : ${q ? q : 'Nothing'}*\n\n`
 		      	for (let mem of participants) {
-		            tekss += `࿃➡️ @${mem.id.split('@')[0]}\n`
+		            tekss += `${q ? q : 'Nothing'} > @${mem.id.split('@')[0]}\n`
 				}
                 tekss += `\n⋙ *${botname}* ⋘`
                 alpha.sendMessage(from, { text: tekss, mentions: participants.map(a => a.id) }, { quoted: m })
             break
             case 'hidetag':
-                if (!m.isGroup) return reply(lang.groupOnly())
-                if (!isGroupAdmins) return reply(lang.adminOnly())
-                if (!isBotAdmins) return reply(lang.botNotAdmin())
+                
                 alpha.sendMessage(from, { text : q ? q : '' , mentions: participants.map(a => a.id)})
             break
             case 'kick': {
